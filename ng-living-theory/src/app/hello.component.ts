@@ -6,10 +6,11 @@ import { SharedModule } from './shared/shared-module';
   standalone: true,
   imports: [SharedModule],
   template: `
-    <app-page-layout pageTitle="Witaj!" fileEntry="./app/hello.component.ts">
+    <app-page-layout pageTitle="Witaj?" fileEntry="./app/hello.component.ts">
+      COŚ DOPISZE...
       <section class="message is-info">
         <div class="message-body">
-          Wybierz interesujący Cię temat z menu po lewej. Zauważ tytuł
+          Wybierz!! interesujący Cię temat z menu po lewej. Zauważ tytuł
           <code>h3</code> w każdym komponencie, sygnalizuje jaki to komponent
           np. tutaj jesteś w <code>hello</code>
         </div>
