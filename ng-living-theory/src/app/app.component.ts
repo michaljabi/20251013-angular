@@ -6,14 +6,17 @@ import {
   RouterOutlet,
 } from '@angular/router';
 import { filter } from 'rxjs';
+import { SampleCounterComponent } from "./sample-counter/sample-counter.component";
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, SampleCounterComponent],
   template: `
     <main class="container mb-5">
       <header class="hero is-position-relative is-overflow-hidden" [class]="backgroundClass">
         <div class="hero-body">
+          <app-sample-counter />
           <div class="title">{{ title }}</div>
           <div class="subtitle">{{ subtitle }}</div>
           <div
