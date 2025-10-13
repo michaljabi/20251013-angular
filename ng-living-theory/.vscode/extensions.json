@@ -1,0 +1,25 @@
+{
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=827846
+  "recommendations": [
+    "angular.ng-template",
+    // dodatkowo:
+    "cyrilletuzi.angular-schematics",
+    "ghaschel.vscode-angular-html",
+    "ghaschel.vscode-angular-inline",
+    // do syntax check - jeszcze:
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "Zignd.html-css-class-completion",
+    // testowanie:
+    "ms-vscode.test-adapter-converter",
+    "hbenl.vscode-test-explorer",
+    "lucono.karma-test-explorer",
+    // inne do testow:
+    "wallabyjs.wallaby-vscode",
+    // wygląd UI:
+    "johnpapa.vscode-peacock",
+    "vscode-icons-team.vscode-icons",
+    // klient REST - do testowania zapytań AJAX:
+    "humao.rest-client"
+  ]
+}
