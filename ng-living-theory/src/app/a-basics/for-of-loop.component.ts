@@ -21,7 +21,7 @@ interface Fruit {
       </div>
       <ul>
         @for (fruit of fruits; track fruit.name) {
-          <li>{{ fruit.amount }} - {{ fruit.name }}</li>
+          <li>{{ fruit.amount }} - {{ fruit.amount }}</li>
         }
       </ul>
 
