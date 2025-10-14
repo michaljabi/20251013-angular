@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import {HeaderComponent} from './header/header.component';
 import {AuctionsPageComponent} from './auctions/auctions-page.component';
+import {NotFoundPageComponent} from './common/not-found-page/not-found-page.component';
 
 export const routes: Routes = [
   // redirect z głównej do /auctions po wejściu na aplikację naszą
@@ -8,5 +8,8 @@ export const routes: Routes = [
   // dopisz ścieżkę do /auctions
   { path: 'auctions', component: AuctionsPageComponent },
   // catch all sla nieobsługiwanych ścieżek (404 TODO ):
-  { path: '**', component: HeaderComponent }
+  { path: '**', component: NotFoundPageComponent },
+  // UWAGA: kolejność ścieżek ma znaczenie !
 ];
+
+// new Array( new Object(), new Object(), new Object(), )
