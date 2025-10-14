@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, /*inject*/} from '@angular/core';
 import type {MenuItem} from './menu.item';
 import {RouterLink, RouterLinkActive} from '@angular/router';
+// import {AuctionsResourceService} from '../../auctions/auctions-resource.service';
 // import {NgFor} from '@angular/common';
 
 // import {JsonPipe, UpperCasePipe} from '@angular/common';
@@ -44,6 +45,8 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
   styles: ``
 })
 export class MainMenuComponent {
+
+    // auctionsResourceService = inject(AuctionsResourceService);
 
     isMenuShown = false;
 
