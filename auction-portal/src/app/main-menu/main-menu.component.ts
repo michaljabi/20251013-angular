@@ -9,10 +9,17 @@ import type {MenuItem} from './menu.item';
   imports: [ /*JsonPipe, UpperCasePipe*//*, NgFor // - potrzebne żeby *ngFor działało */],
   template: `
     <nav class="navbar navbar-expand-lg navbar-light bg-light px-3 mb-3">
-      <button class="navbar-toggler" type="button">
+<!--      <button class="navbar-toggler" type="button" (click)="isMenuShown = !isMenuShown">-->
+      <button class="navbar-toggler" type="button" (click)="handleMenuToggle($event)">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse show">
+      <!--<button class="navbar-toggler" id="a"  type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <button class="navbar-toggler" data-myInvention type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>-->
+      <div class="collapse navbar-collapse" [class.show]="isMenuShown">
 <!--        {{ { name: 'Michał' } | json | uppercase }}-->
         <ul class="navbar-nav">
           @for (item of items; track item.label) {
@@ -28,7 +35,7 @@ import type {MenuItem} from './menu.item';
             <a class="nav-link" [href]="item.href">{{item.label}}</a>
           </li>
           -->
-          <!-- na depricated musimy uważać, bo jeśli jest w v20 to oznacza że w v21 już może nie być dostępne -->
+          <!-- na deprecated musimy uważać, bo jeśli jest w v20 to oznacza że w v21 już może nie być dostępne -->
         </ul>
       </div>
     </nav>
@@ -37,9 +44,16 @@ import type {MenuItem} from './menu.item';
 })
 export class MainMenuComponent {
 
+    isMenuShown = false;
+
     items: MenuItem[] = [
       { href: '/auctions', label: 'Aukcje' },
       { href: '/promotions', label: 'Promocje' },
       { href: '/advices', label: 'Podpowiadamy' },
     ];
+
+    handleMenuToggle(ev: PointerEvent) {
+      console.log('Native browser event', ev);
+      this.isMenuShown = !this.isMenuShown;
+    }
 }
