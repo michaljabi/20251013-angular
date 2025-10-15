@@ -40,6 +40,10 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
           <!-- na deprecated musimy uważać, bo jeśli jest w v20 to oznacza że w v21 już może nie być dostępne -->
         </ul>
       </div>
+      <div class="text-light d-flex gap-2">
+        <a class="btn btn-outline-primary" routerLink="/add-auction"> Dodaj </a>
+        <a class="btn btn-outline-secondary" routerLink="/cart"> Koszyk </a>
+      </div>
     </nav>
   `,
   styles: ``

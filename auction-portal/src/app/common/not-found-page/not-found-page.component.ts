@@ -10,7 +10,7 @@ import {JsonPipe} from '@angular/common';
       <div class="alert alert-warning">
         adres <code>/{{activatedRoute.snapshot.url}}</code> nie został odnaleziony
       </div>
-      <button class="btn btn-primary" routerLink="/"> Powrót do 🏠</button>
+      <a class="btn btn-primary" routerLink="/"> Powrót do 🏠</a>
       <div class="my-4">
         Klasyczne <code>DI</code> <strong>{{activatedRoute2.snapshot.queryParams | json}}</strong>
       </div>
