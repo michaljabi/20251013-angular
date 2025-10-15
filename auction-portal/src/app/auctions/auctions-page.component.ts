@@ -14,7 +14,12 @@ import {AuctionItem} from './auction-item';
             <app-auction-card [auctionItem]="item" />
           </div>
         } @empty {
-
+          @if(isAuctionsLoading) {
+            <div class="alert alert-info">Ładowanie aukcji....</div>
+          }
+          @if (errorMessage) {
+            <div class="alert alert-danger">{{errorMessage}}</div>
+          }
         }
       </div>
     </section>
@@ -27,19 +32,25 @@ export class AuctionsPageComponent implements OnInit {
     auctionsResourceService = inject(AuctionsResourceService);
 
     auctions: AuctionItem[] = [];
+    isAuctionsLoading = false;
+    errorMessage = '';
 
     // Jesteś w stanie sterować momentem wywołania tej metody podczas testowania komponentu.
     ngOnInit(): void {
-      // isLoading = true
+      this.isAuctionsLoading = true
       this.auctionsResourceService.getAll().subscribe({
         next: (auctions: AuctionItem[]) => {
           this.auctions = auctions;
-          // isLoading = false
+          this.isAuctionsLoading = false
         },
         error: (err: Error) => {
           console.error('Error', err);
-          // errorMessage = err.message
-        }
+          this.errorMessage = 'Nie udało się pobrać aukcji.'
+          this.isAuctionsLoading = false
+        }/*,
+        complete: () => {
+          console.log('Completed');
+        }*/
       });
     }
 }
