@@ -31,7 +31,6 @@ import {RouterLink, RouterOutlet} from '@angular/router';
         </ul>
       </div>
       <div class="col-12 col-sm-8">
-        PRAWA STRONA
         <router-outlet></router-outlet>
       </div>
     </section>
