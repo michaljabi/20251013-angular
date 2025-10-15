@@ -6,7 +6,9 @@ import { Component } from '@angular/core';
   template: `
     <div class="input-group mb-3 w-100">
       <div class="input-group-prepend" (click)="superInput.focus()">
-        <span class="input-group-text"> 🔍 </span>
+        <span class="input-group-text">
+            <fa-icon icon="search" />
+        </span>
       </div>
       <input #superInput type="text" name="title" class="form-control" />
     </div>
