@@ -2,12 +2,14 @@ import {Component, inject, OnInit} from '@angular/core';
 import {AuctionsResourceService} from './auctions-resource.service';
 import {AuctionCardComponent} from './auction-card/auction-card.component';
 import {AuctionItem} from './auction-item';
+import {SharedModule} from '../shared/shared.module';
 
 @Component({
-  imports: [ AuctionCardComponent],
+  imports: [AuctionCardComponent, SharedModule],
   template: `
     <section>
       <h2>Nasze aukcje:</h2>
+      <app-search-bar />
       <div class="row">
         @for(item of auctions; track item.id) {
           <div class="col-12 col-sm-6 col-md-4 col-lg-3">

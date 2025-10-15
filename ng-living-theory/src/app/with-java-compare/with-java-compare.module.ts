@@ -62,5 +62,6 @@ import { ObjectPropertyShorthandPageComponent } from './es-next-news/object-prop
     ObjectPropertyShorthandPageComponent,
   ],
   imports: [CommonModule, RouterModule, MenuComponent, SharedModule],
+  exports: []
 })
 export class WithJavaCompareModule {}
