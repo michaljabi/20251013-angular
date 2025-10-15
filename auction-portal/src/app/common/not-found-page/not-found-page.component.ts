@@ -8,7 +8,7 @@ import {JsonPipe} from '@angular/common';
     <section>
       <h1>Strona nie znaleziona 😭 <code>404</code></h1>
       <div class="alert alert-warning">
-        adres <code>/{{activatedRoute.snapshot.url}}</code> nie został odnaleziony
+        adres <code>/{{activatedRoute.snapshot.url.join('/')}}</code> nie został odnaleziony
       </div>
       <a class="btn btn-primary" routerLink="/"> Powrót do 🏠</a>
       <div class="my-4">
