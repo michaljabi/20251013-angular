@@ -9,7 +9,10 @@
     "test": "ng test",
     "start-backend": "json-server ./fake-backend/my-data.json",
     "say": "npx cowsay JavaScript FTW!",
-    "preview-production": "npx serve ./dist/auction-portal/browser -s -p 5000"
+    "preview-production": "npx serve ./dist/auction-portal/browser -s -p 5000",
+    "compile-ts": "tsc ./playground/sample-interface.ts",
+    "run-js": "node ./playground/sample-interface.js",
+    "run-ts": "npx tsx ./playground/sample-interface.ts"
   },
   "prettier": {
     "printWidth": 100,
