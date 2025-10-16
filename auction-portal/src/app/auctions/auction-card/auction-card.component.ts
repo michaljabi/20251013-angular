@@ -1,9 +1,10 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {AuctionItem} from '../auction-item';
+import {SharedModule} from '../../shared/shared.module';
 
 @Component({
   selector: 'app-auction-card',
-  imports: [],
+  imports: [SharedModule],
   template: `
     <div class="card">
       @if(auctionItem) {
@@ -13,8 +14,8 @@ import {AuctionItem} from '../auction-item';
           <p class="card-text">{{auctionItem.description}}</p>
           <div class="d-flex justify-content-between align-content-center">
             <strong> {{auctionItem.price}} zł</strong>
-            <button class="btn btn-primary">
-              <i class="fa fa-cart-plus"></i> +
+            <button class="btn btn-primary" (click)="addItemToCart.emit(auctionItem)">
+              <fa-icon icon="cart-plus"></fa-icon>
             </button>
           </div>
         </div>
@@ -25,4 +26,6 @@ import {AuctionItem} from '../auction-item';
 })
 export class AuctionCardComponent {
   @Input({required: true}) auctionItem?: AuctionItem;
+
+  @Output() addItemToCart = new EventEmitter<AuctionItem>();
 }
