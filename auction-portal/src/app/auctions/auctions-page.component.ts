@@ -3,15 +3,16 @@ import {AuctionsResourceService} from './auctions-resource.service';
 import {AuctionCardComponent} from './auction-card/auction-card.component';
 import {AuctionItem} from './auction-item';
 import {SharedModule} from '../shared/shared.module';
+import {AuctionSearchPipe} from './auction-search.pipe';
 
 @Component({
-  imports: [AuctionCardComponent, SharedModule],
+  imports: [AuctionCardComponent, SharedModule, AuctionSearchPipe],
   template: `
     <section>
       <h2>Nasze aukcje({{filterAuctionBy}}):</h2>
       <app-search-bar [placeholder]="'Szukaj aukcji...'" (searchTextChange)="filterAuctionBy = $event" />
       <div class="row">
-        @for(item of auctions; track item.id) {
+        @for(item of auctions | auctionSearch:filterAuctionBy; track item.id) {
           <div class="col-12 col-sm-6 col-md-4 col-lg-3">
             <app-auction-card [auctionItem]="item" />
           </div>
