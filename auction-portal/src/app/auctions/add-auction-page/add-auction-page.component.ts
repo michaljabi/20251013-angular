@@ -75,6 +75,29 @@ import {AuctionItem, AuctionItemWithoutId} from '../auction-item';
               <textarea class="form-control" id="auctionDescription" rows="5" formControlName="description"></textarea>
             </div>
           </div>
+
+          <div formArrayName="tags" class="mb-4">
+            <button type="button" class="btn btn-outline-success mb-2" (click)="handleAddTag()">
+              <fa-icon icon="plus"/> Tag
+            </button>
+            @for(tag of auctionForm.controls.tags.controls; track tag) {
+              <div class="form-group" [formGroup]="tag" >
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      {{ $index + 1 }}. <fa-icon icon="tag" />
+                    </span>
+                  </div>
+                  <input class="form-control" formControlName="tagName" />
+                  <button class="btn btn-outline-danger" type="button" (click)="handleRemoveTag($index)">
+                    ➖
+                  </button>
+                </div>
+              </div>
+            }
+          </div>
+
+
           <div class="text-right">
             <button class="btn btn-primary" type="submit" [style.opacity]="auctionForm.invalid ? 0.6 : 1">
               <fa-icon icon="gavel"></fa-icon> Dodaj aukcję
@@ -100,7 +123,12 @@ export class AddAuctionPageComponent {
       title: ['', [Validators.required, Validators.minLength(5)]],
       price: [0, [Validators.required, Validators.min(10), Validators.max(10_000_000)]],
       imgId: [12, [Validators.min(0), Validators.max(1084)]],
-      description: ['']
+      description: [''],
+      tags: this.fb.array([
+        this.fb.group({
+          tagName: ['']
+        })
+      ])
     })
 
     get title() {
@@ -111,12 +139,27 @@ export class AddAuctionPageComponent {
       return `https://picsum.photos/id/${this.auctionForm.value.imgId}/600/600`
     }
 
+    get tags() {
+      return this.auctionForm.controls.tags
+    }
+
+    handleAddTag() {
+      this.tags.push(this.fb.group({ tagName: [''] }))
+    }
+
+    handleRemoveTag(idx: number) {
+      this.tags.removeAt(idx)
+    }
+
     handleSubmit() {
+
+      console.log('Wartości', this.auctionForm.value)
+
       if(this.auctionForm.invalid) {
         this.auctionForm.markAllAsTouched();
         return;
       }
-      //console.log('Wartości', this.auctionForm.value)
+
       //console.log(this.imgUrl)
       // this.auctionForm.value.
 

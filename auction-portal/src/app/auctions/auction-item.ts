@@ -10,6 +10,11 @@ export interface AuctionItem {
   description?: string;
 }
 
+// poglądowo (pod dynamicznie dodawane tagi):
+export interface TaggedAuctionItem extends AuctionItem {
+  tags?: { tagName: string}[];
+}
+
 // Żeby wysłać POST do serwera
 export type AuctionItemWithoutId = Omit<AuctionItem, 'id'>;
 
