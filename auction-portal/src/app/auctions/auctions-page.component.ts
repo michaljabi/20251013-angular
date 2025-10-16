@@ -8,8 +8,8 @@ import {SharedModule} from '../shared/shared.module';
   imports: [AuctionCardComponent, SharedModule],
   template: `
     <section>
-      <h2>Nasze aukcje:</h2>
-      <app-search-bar />
+      <h2>Nasze aukcje({{filterAuctionBy}}):</h2>
+      <app-search-bar placeholder="Szukaj aukcji..." (searchTextChange)="filterAuctionBy = $event" />
       <div class="row">
         @for(item of auctions; track item.id) {
           <div class="col-12 col-sm-6 col-md-4 col-lg-3">
@@ -33,6 +33,7 @@ export class AuctionsPageComponent implements OnInit {
 
     auctionsResourceService = inject(AuctionsResourceService);
 
+    filterAuctionBy = '';
     auctions: AuctionItem[] = [];
     isAuctionsLoading = false;
     errorMessage = '';
