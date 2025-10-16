@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, input, Input, output, Output} from '@angular/core';
 
 @Component({
   selector: 'app-search-bar',
@@ -31,7 +31,12 @@ export class SearchBarComponent {
     @Input() placeholder = 'Szukaj...';
     @Output() searchTextChange = new EventEmitter<string>();
 
+    // Nowoczesny zapis na syngałach + event emitter output() jako wrapper funkcyjny
+    placeholderNew = input('Szukaj... sygnał')
+    searchTextChangeNew = output<string>()
+
     handleInputChange() {
-      this.searchTextChange.emit(this.searchText);
+      this.searchTextChange.next(this.searchText);
+      this.searchTextChangeNew.emit(this.searchText);
     }
 }

@@ -9,7 +9,7 @@ import {SharedModule} from '../shared/shared.module';
   template: `
     <section>
       <h2>Nasze aukcje({{filterAuctionBy}}):</h2>
-      <app-search-bar placeholder="Szukaj aukcji..." (searchTextChange)="filterAuctionBy = $event" />
+      <app-search-bar [placeholder]="'Szukaj aukcji...'" (searchTextChange)="filterAuctionBy = $event" />
       <div class="row">
         @for(item of auctions; track item.id) {
           <div class="col-12 col-sm-6 col-md-4 col-lg-3">
