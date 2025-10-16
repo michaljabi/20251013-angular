@@ -33,6 +33,13 @@
       "imgUrl": "https://picsum.photos/id/1080/600/600",
       "description": "Zabytkowy ogórek",
       "price": 42
+    },
+    {
+      "id": "05bc",
+      "title": "Droga",
+      "price": 20000,
+      "imgUrl": "https://picsum.photos/id/17/600/600",
+      "description": "test opisu"
     }
   ]
 }

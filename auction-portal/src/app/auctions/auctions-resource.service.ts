@@ -25,7 +25,8 @@ export class AuctionsResourceService {
       return this.httpClient.get<AuctionItem[]>(this.auctionEndpoint);
     }
 
-    addOne(item: AuctionItemWithoutId) {
+    addOne(item: AuctionItemWithoutId): Observable<AuctionItem>  {
       console.log('Dodano', item);
+      return this.httpClient.post<AuctionItem>(this.auctionEndpoint, item);
     }
 }

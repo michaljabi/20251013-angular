@@ -2,6 +2,8 @@ import {Component, inject} from '@angular/core';
 import {SharedModule} from '../../shared/shared.module';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {JsonPipe} from '@angular/common';
+import {AuctionsResourceService} from '../auctions-resource.service';
+import {AuctionItem, AuctionItemWithoutId} from '../auction-item';
 
 @Component({
   selector: 'app-add-auction-page',
@@ -90,7 +92,8 @@ import {JsonPipe} from '@angular/common';
   `
 })
 export class AddAuctionPageComponent {
-    private fb = inject(FormBuilder);
+    private fb = inject(FormBuilder).nonNullable;
+    private auctionResourceService = inject(AuctionsResourceService);
 
     auctionForm = this.fb.group({
       // title: new FormControl('??'),
@@ -113,6 +116,28 @@ export class AddAuctionPageComponent {
         this.auctionForm.markAllAsTouched();
         return;
       }
-      console.log('Wartości', this.auctionForm.value)
+      //console.log('Wartości', this.auctionForm.value)
+      //console.log(this.imgUrl)
+      // this.auctionForm.value.
+
+      // const { title = '', price = 10, description = '' } = this.auctionForm.value;
+
+      const newAuction: AuctionItemWithoutId = {
+        title: String(this.auctionForm.value.title),
+        // price: Number(this.auctionForm.value.price),
+        price: this.auctionForm.controls.price.value,
+        imgUrl: this.imgUrl,
+        description: String(this.auctionForm.value.description)
+      }
+
+      this.auctionResourceService.addOne(newAuction).subscribe({
+        next: (auctionItem: AuctionItem) => {
+          console.log('Nowe id to:', auctionItem.id);
+          this.auctionForm.reset();
+        },
+        error: (err: Error) => {
+          console.error('Error', err);
+        }
+      })
     }
 }
