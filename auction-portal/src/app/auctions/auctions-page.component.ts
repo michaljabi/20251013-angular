@@ -1,9 +1,10 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {AuctionsResourceService} from './auctions-resource.service';
 import {AuctionCardComponent} from './auction-card/auction-card.component';
 import {AuctionItem} from './auction-item';
 import {SharedModule} from '../shared/shared.module';
 import {AuctionSearchPipe} from './auction-search.pipe';
+import {Subscription} from 'rxjs';
 
 @Component({
   imports: [AuctionCardComponent, SharedModule, AuctionSearchPipe],
@@ -30,7 +31,8 @@ import {AuctionSearchPipe} from './auction-search.pipe';
   styles: ``,
   // providers: [AuctionsResourceService]
 })
-export class AuctionsPageComponent implements OnInit {
+export class AuctionsPageComponent implements OnInit, OnDestroy {
+
 
     auctionsResourceService = inject(AuctionsResourceService);
 
@@ -39,12 +41,16 @@ export class AuctionsPageComponent implements OnInit {
     isAuctionsLoading = false;
     errorMessage = '';
 
+    myAuctionSub: Subscription | null = null;
+
     // Jesteś w stanie sterować momentem wywołania tej metody podczas testowania komponentu.
     ngOnInit(): void {
+      console.log('INIT')
       this.isAuctionsLoading = true
-      this.auctionsResourceService.getAll().subscribe({
+      this.myAuctionSub = this.auctionsResourceService.getAll().subscribe({
         next: (auctions: AuctionItem[]) => {
           this.auctions = auctions;
+          console.log('Dostałem aukcje', auctions)
           this.isAuctionsLoading = false
         },
         error: (err: Error) => {
@@ -57,4 +63,9 @@ export class AuctionsPageComponent implements OnInit {
         }*/
       });
     }
+
+  ngOnDestroy(): void {
+    console.log('DESTROYED')
+    this.myAuctionSub?.unsubscribe()
+  }
 }
