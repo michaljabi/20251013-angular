@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faGavel, faPlus, faShoppingBasket, faUser, faSearch, faCartPlus, faEdit, faTag, faImage } from '@fortawesome/free-solid-svg-icons';
+import { FormErrorBoxComponent } from './form-error-box/form-error-box.component';
 
 @NgModule({
   declarations: [
-    SearchBarComponent
+    SearchBarComponent,
+    FormErrorBoxComponent
   ],
   imports: [
     CommonModule,
@@ -14,7 +16,8 @@ import { faGavel, faPlus, faShoppingBasket, faUser, faSearch, faCartPlus, faEdit
   ],
   exports: [
     SearchBarComponent,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormErrorBoxComponent
   ]
 })
 export class SharedModule {

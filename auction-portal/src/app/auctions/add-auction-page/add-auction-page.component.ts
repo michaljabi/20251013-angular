@@ -28,10 +28,11 @@ import {JsonPipe} from '@angular/common';
             @let myTitle = auctionForm.controls.title;
 
             @if(myTitle.touched && title.invalid) {
-              <div class="alert alert-danger">
+              <!--<div class="alert alert-danger">
                 {{ title.errors?.['required'] ? 'Pole jest wymagane' : '' }}
                 {{ title.errors?.['minlength'] ? 'Minimalna nazwa aukcji musi zawierać ' + title.errors?.['minlength']['requiredLength'] + ' znaków' : '' }}
-              </div>
+              </div>-->
+              <app-form-error-box [errors]="title.errors" />
             }
 
           </div>
@@ -47,10 +48,7 @@ import {JsonPipe} from '@angular/common';
             </div>
             @let price = auctionForm.controls.price;
             @if(price.touched && price.invalid) {
-              <div class="alert alert-danger">
-                {{ price.errors?.['min'] ? 'Minimalna cena to '+ price.errors?.['min']['min'] +' zł' : '' }}
-                {{ price.errors?.['max'] ? 'Maksymalna cena to '+ + price.errors?.['max']['max']  +' zł' : '' }}
-              </div>
+              <app-form-error-box [errors]="price.errors" />
             }
           </div>
           <div class="form-group">
