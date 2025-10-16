@@ -23,7 +23,7 @@ import { SharedModule } from '../shared/shared-module';
           <li>Bez pipe: {{ myDate }}</li>
           <li>Z użyciem pipe: {{ myDate | date }}</li>
           <li>
-            Z użyciem pipe i argumentów: {{ myDate | date: 'yyyy-MM-dd HH:mm' }}
+            Z użyciem pipe i argumentów: {{ myDate | date:'yyyy-MM-dd HH:mm' }}
           </li>
         </ul>
         <h4>Currency pipe</h4>

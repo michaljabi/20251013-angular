@@ -1,9 +1,11 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {SharedModule} from '../../shared/shared.module';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {JsonPipe} from '@angular/common';
 import {AuctionsResourceService} from '../auctions-resource.service';
 import {AuctionItem, AuctionItemWithoutId} from '../auction-item';
+
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-auction-page',
@@ -114,7 +116,8 @@ import {AuctionItem, AuctionItemWithoutId} from '../auction-item';
     }
   `
 })
-export class AddAuctionPageComponent {
+export class AddAuctionPageComponent implements OnInit {
+
     private fb = inject(FormBuilder).nonNullable;
     private auctionResourceService = inject(AuctionsResourceService);
 
@@ -130,6 +133,13 @@ export class AddAuctionPageComponent {
         })
       ])
     })
+
+    ngOnInit(): void {
+      // Przykład: interesuje mnie tylko moment, w którym ktoś poda cenę powyżej 90 zł.
+      this.auctionForm.valueChanges.pipe(filter(v => v.price > 90)).subscribe(value => {
+        console.log(value);
+      })
+    }
 
     get title() {
       return this.auctionForm.controls.title
